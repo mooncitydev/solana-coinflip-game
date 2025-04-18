@@ -1,7 +1,7 @@
 import database from "mongoose";
 import { historyModel } from "./model/history_manager";
 
-require('dotenv').config("../.env");
+require('dotenv').config("./.env");
 const DB_CONNECTION = process.env.DB_CONNECTION;
 
 export const init = () => {
