@@ -1,0 +1,17 @@
+[features]
+seeds = false
+skip-lint = false
+#[programs.devnet]
+[programs.mainnet]
+coinflip = "G9H8d5s4cRKXUbiEg6XVSNHKiZXCEYMZw4WcN4YW4iUp"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+#cluster = "devnet"
+cluster = "mainnet"
+wallet = "/Users/kob/.config/solana/SERVUJeqsyaJTuVuXAmmko6kTigJmxzTxUMSThpC2LZ.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"
