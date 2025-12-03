@@ -222,7 +222,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 📞 Contact & Support
 
 - **Telegram**: [@moooncity](https://t.me/moooncity)
-- **Project Repository**: [GitHub](https://github.com/yourusername/s7ns-coinflip)
 
 ## ⚠️ Disclaimer
 
