@@ -1,5 +1,5 @@
-import * as anchor from "@project-serum/anchor";
-import { bs58 } from "@project-serum/anchor/dist/cjs/utils/bytes";
+import * as anchor from "@coral-xyz/anchor";
+import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
 import { WalletContextState } from "@solana/wallet-adapter-react";
 import { LAMPORTS_PER_SOL, PartiallyDecodedInstruction, PublicKey, SystemProgram, Transaction, TransactionError } from "@solana/web3.js";
 import { errorAlert, successAlert } from "../components/toastGroup";
@@ -14,14 +14,14 @@ export const initializeUserPool = async (wallet: WalletContextState) => {
   try {
     let tx = await initUserPoolTx(wallet);
     if (tx) {
-      let { blockhash } = await provider.connection.getLatestBlockhash("confirmed");
+      let { blockhash, lastValidBlockHeight } = await provider.connection.getLatestBlockhash("confirmed");
       tx.feePayer = wallet.publicKey as PublicKey;
       tx.recentBlockhash = blockhash;
       if (wallet.signTransaction !== undefined) {
         let signedTx = await wallet.signTransaction(tx);
 
         let txId = await provider.connection.sendRawTransaction(signedTx.serialize(), { skipPreflight: true, maxRetries: 3, preflightCommitment: "confirmed" });
-        await solConnection.confirmTransaction(txId, "confirmed");
+        await solConnection.confirmTransaction({ signature: txId, blockhash, lastValidBlockHeight }, "confirmed");
       }
     }
     successAlert("Transaction confirmed!");
@@ -64,13 +64,13 @@ export const playGame = async (
     //console.log("tx", tx);
 
     if (tx) {
-      let { blockhash } = await provider.connection.getLatestBlockhash("confirmed");
+      let { blockhash, lastValidBlockHeight } = await provider.connection.getLatestBlockhash("confirmed");
       tx.feePayer = wallet.publicKey as PublicKey;
       tx.recentBlockhash = blockhash;
       if (wallet.signTransaction !== undefined) {
         let signedTx = await wallet.signTransaction(tx);
         txId = await provider.connection.sendRawTransaction(signedTx.serialize(), { skipPreflight: true, maxRetries: 3, preflightCommitment: "confirmed" });
-        const txConfirmation: any = await solConnection.confirmTransaction(txId, "confirmed");
+        const txConfirmation: any = await solConnection.confirmTransaction({ signature: txId, blockhash, lastValidBlockHeight }, "confirmed");
 
         //console.log("txConfirmation", txConfirmation);
         //console.log("txConfirmation value", txConfirmation.value);
@@ -159,13 +159,13 @@ export const claim = async (wallet: WalletContextState, startLoading: Function, 
     let tx = await createClaimTx(wallet);
     let txId = "";
     if (tx) {
-      let { blockhash } = await provider.connection.getLatestBlockhash("confirmed");
+      let { blockhash, lastValidBlockHeight } = await provider.connection.getLatestBlockhash("confirmed");
       tx.feePayer = wallet.publicKey as PublicKey;
       tx.recentBlockhash = blockhash;
       if (wallet.signTransaction !== undefined) {
         let signedTx = await wallet.signTransaction(tx);
         txId = await provider.connection.sendRawTransaction(signedTx.serialize(), { skipPreflight: true, maxRetries: 3, preflightCommitment: "confirmed" });
-        await solConnection.confirmTransaction(txId, "confirmed");
+        await solConnection.confirmTransaction({ signature: txId, blockhash, lastValidBlockHeight }, "confirmed");
       }
     }
 

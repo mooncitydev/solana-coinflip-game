@@ -7,12 +7,19 @@ function RaffleApp({ Component, pageProps }) {
   return (
     <Wallet>
       <WalletModalProvider>
-        <Component
-          {...pageProps}
-          startLoading={() => setLoading(true)}
-          closeLoading={() => setLoading(false)}
+        <Component {...pageProps} />
+        <ToastContainer 
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          style={{ fontSize: 14 }} 
         />
-        <ToastContainer style={{ fontSize: 14 }} />
       </WalletModalProvider>
     </Wallet>
   );

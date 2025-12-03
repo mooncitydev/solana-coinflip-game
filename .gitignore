@@ -1,0 +1,79 @@
+# Dependencies
+node_modules/
+**/node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+*.lcov
+
+# Production
+dist/
+build/
+.next/
+out/
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Solana
+target/
+.anchor/
+**/target/
+**/.anchor/
+*.so
+
+# TypeScript
+*.tsbuildinfo
+
+# Misc
+.cache/
+.temp/
+.tmp/
+dumps/
+
+# Wallet files (NEVER COMMIT THESE!)
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!next.config.js
+!Anchor.toml
+!Cargo.toml
+!Cargo.lock
+
+# But allow specific config files
+!frontend/next.config.js
+!frontend/tsconfig.json
+!backend/tsconfig.json
+!contract/tsconfig.json
+!contract/Anchor.toml
+!contract/Cargo.toml
+!contract/Cargo.lock
+

@@ -1,11 +1,10 @@
 import {Connection, LAMPORTS_PER_SOL, PublicKey} from "@solana/web3.js";
-import { web3 } from "@project-serum/anchor";
 import { NETWORK } from "../config";
 import {DISCORD_COINFLIP_ADMIN_CHANNELID, DISCORD_COINFLIP_NORMAL_CHANNELID, RPC_CURRENT} from "./type";
 import axios from "axios";
 import {WalletAdapterNetwork} from "@solana/wallet-adapter-base";
 
-export const solConnection = new web3.Connection(RPC_CURRENT, "confirmed");
+export const solConnection = new Connection(RPC_CURRENT, "confirmed");
 
 export const getSolbalance = async (wallet: PublicKey) =>
 {

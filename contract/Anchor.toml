@@ -6,7 +6,7 @@ skip-lint = false
 coinflip = "G9H8d5s4cRKXUbiEg6XVSNHKiZXCEYMZw4WcN4YW4iUp"
 
 [registry]
-url = "https://anchor.projectserum.com"
+url = "https://api.apr.dev"
 
 [provider]
 #cluster = "devnet"
